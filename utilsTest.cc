@@ -26,6 +26,26 @@ float v[] = {
            };
 
 
+float c[] = {
+  0, 0, 0, 0
+  0, 0, 0, 0};
+
+  int rows_c = 2;
+  int cols_c 4;
+
+ 
+
+  martrixMult(a, rows_a, cols_a, b, rows_b, cols_b, c);
+
+
+
+// cols_a = rows_b
+
+
+// [2 1] [1 2 3 4] = []
+//  1 2   5 6 7 8
+
+
 
 int rows = 3;
 float alpha = 2.0;
