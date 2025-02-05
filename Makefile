@@ -28,4 +28,3 @@ clean:
 # Run the program
 run: $(TARGET)
 	./$(TARGET)
-
