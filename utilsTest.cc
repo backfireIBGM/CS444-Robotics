@@ -25,4 +25,9 @@ float alpha = 2.0;
 vectorPrint(u, rows);
 vectorScale(u,rows,alpha,v);
 vectorPrint(v,rows);
+
+
+
+// vectorDotProduct(u, v, rows);
+
 }

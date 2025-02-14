@@ -1,7 +1,3 @@
-
-Page
-1
-of 3
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
@@ -15,6 +11,7 @@ of 3
 #include "readData.h"
 #include "utils.h"
 #include "matrixUtils.h"
+#include <cmath>
 using namespace std;
 // This code was written by Ken Owens 2/11/2025
 // to solve Ap=b using QR decomposition.
@@ -91,6 +88,9 @@ row++;
 c[row]=zc[i];
 row++;
 }
+
+
+
 printf("M matrix \n");
 matrixPrint(m,rows,cols);
 printf("c right hand side vector \n");

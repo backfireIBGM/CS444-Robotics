@@ -1,7 +1,3 @@
-
-Page
-1
-of 3
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
@@ -85,8 +81,7 @@ p[j]=p[j]/R[j*cols+j];
 void matrixUpperTriangularInverse(float* A, int rows, int cols, float* invA){
 // This code computes the inverse of a non-singular upper triangular 3x3 matrix.
 if(rows !=3 || cols !=3){
-printf(" Only 3x3 full rank upper triangle matricies can be inverted with
-this code\n");
+printf(" Only 3x3 full rank upper triangle matricies can be inverted with this code\n");
 exit(0);
 }
 for(int row = 0; row < rows; row++){
