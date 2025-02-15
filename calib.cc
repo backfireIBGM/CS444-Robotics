@@ -102,7 +102,7 @@ matrixProduct(mTranspose,cols,rows,m,rows,cols,a);
 printf("Matrix A \n");
 matrixPrint(a,cols,cols);
 // compute QR decomposition of matrix A
-matrixQR(a,cols,cols,q,r);
+//matrixQR(a,cols,cols,q,r);
 printf("Q matrix \n");
 matrixPrint(q,cols,cols);
 printf("R matrix \n");

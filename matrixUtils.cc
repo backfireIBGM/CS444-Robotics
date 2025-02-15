@@ -114,12 +114,12 @@ printf("3x3 submatrix of p\n");
 matrixPrint(pSub,3,3);
 // find the inverse of pSub with QR decomposition
 // Its inverse is B=RInv*QTranspose
-matrixQR(pSub,3,3,q,r);
+//matrixQR(pSub,3,3,q,r);
 matrixTranspose(q,3,3,qT);
 matrixUpperTriangularInverse(r,3,3,rInv);
 matrixProduct(rInv,3,3,qT,3,3,b);
 //QR decompose the matrix B
-matrixQR(b,3,3,q,r);
+//matrixQR(b,3,3,q,r);
 int rows_k = rows;
 int cols_k = rows_k;
 int rows_r = rows;

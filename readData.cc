@@ -1,7 +1,3 @@
-
-Page
-1
-of 2
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
