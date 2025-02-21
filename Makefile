@@ -5,7 +5,7 @@ CC = g++
 CFLAGS = -Wall 
 
 # Source files
-SRCS = utils.cc calib.cc matrixUtils.cc readData.cc readParams.cc
+SRCS = utils.cc utilsTest.cc
 
 # Object files (replace .cc with .o)
 OBJS = $(SRCS:.cc=.o)
@@ -21,9 +21,9 @@ $(TARGET): $(OBJS)
 %.o: %.cc
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean rule
+# Clean rule for Windows
 clean:
-	rm -f $(OBJS) $(TARGET)
+	del /Q $(OBJS) $(TARGET).exe 2>nul
 
 # Run the program
 run: $(TARGET)
