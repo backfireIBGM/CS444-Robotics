@@ -13,7 +13,7 @@ z[], float zc[]) {
 ifstream infile;
 string line;
 int value;
-int imageWidth,imageHeight,numPoints;
+int imageWidth, imageHeight, numPoints;
 //open file
 infile.open (fileName);
 //read first line to get image parameters
@@ -37,7 +37,7 @@ value=0;
 do{
 string sub;
 iss >> sub;
-if(value==0) u[i] = imageWidth - atof(sub.c_str());
+if(value==0) u[i] = atof(sub.c_str());
 if(value==1) v[i] = atof(sub.c_str());
 if(value==2) x[i] = atof(sub.c_str())*25.0;
 if(value==3) y[i] = atof(sub.c_str())*25.0;

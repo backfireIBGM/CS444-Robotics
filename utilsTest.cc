@@ -27,6 +27,7 @@ float alpha = 2.0;
 // vectorPrint(v,rows);
 
 float scale = vectorNorm(u, rows);
+vectorPrint(u, rows);
 
 cout << "The scale is: " << scale << endl;
 

@@ -5,13 +5,13 @@ CC = g++
 CFLAGS = -Wall 
 
 # Source files
-SRCS = utils.cc utilsTest.cc
+SRCS = calib.cc readParams.cc readData.cc
 
 # Object files (replace .cc with .o)
 OBJS = $(SRCS:.cc=.o)
 
 # Output executable
-TARGET = utilsTest
+TARGET = calibTest
 
 # Rule to build the final executable
 $(TARGET): $(OBJS)
