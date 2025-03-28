@@ -14,7 +14,6 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-
 int fps = 10; // in frames per sec
 int frameDelay = 1000/fps; // in millisec 
 double maxDistance = 3000.0; // mm
