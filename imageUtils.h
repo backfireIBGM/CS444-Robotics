@@ -1,4 +1,3 @@
-
 #ifndef IMAGEUTILS_H
 #define IMAGEUTILS_H
 
