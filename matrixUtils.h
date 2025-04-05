@@ -12,4 +12,5 @@ void matrixExtractCol(float*a, int rows, int cols, int col, float* column);
 void matrixBackSubstitution(float* R, int rows, int cols, float* d, float* p);
 void matrixUpperTriangularInverse(float* A, int rows, int cols, float* invA);
 void matrixInternalCameraParameters(float* p,int rows,int cols,float* k);
+void matrixQR(float* matrixA, int n, int m, float* q, float* r);
 #endif

@@ -9,6 +9,7 @@
 #include <sstream>
 #include "utils.h"
 using namespace std;
+//Print matrix function
 void matrixPrint(float* matrix, int rows, int cols) {
 printf("number of rows and cols,%d %d \n", rows, cols);
 for (int row = 0; row < rows; row++) {
@@ -19,6 +20,7 @@ printf("\n");
 }
 printf("\n");
 }
+// Matrix Product Function
 void matrixProduct(float* a, int rows_a, int cols_a, float* b, int rows_b, int
 cols_b, float* c){
 int index = 0;
@@ -39,6 +41,7 @@ printf("Can't multiply. Dimensions incorrect \n");
 exit(0);
 }
 }
+// MATRIX VECTOR MULTIPLICATION FUNCTION
 void matrixTimesVector(float* a, int rows, int cols, float* v, int rows_v, float*
 w){
 if(cols==rows_v){
@@ -53,6 +56,7 @@ printf(" dimensions don't match \n");
 exit(0);
 }
 }
+// MATRIX TRANSPOST FUNCTION
 void matrixTranspose(float* a, int rows, int cols, float* aTranspose){
 for( int row = 0; row < rows; row++){
 for( int col = 0;col < cols;col++){
@@ -60,6 +64,7 @@ aTranspose[col*rows+row] = a[row*cols+col];
 }
 }
 }
+// MATRIX COLUMN EXTRACTION FUNCTION
 void matrixExtractCol(float*a, int rows, int cols, int col, float* column){
 int index;
 for(int row=0;row<rows;row++){
@@ -67,6 +72,7 @@ index = col + row*cols;
 column[row] = a[index];
 }
 }
+// 	MATRIX BACK SUBSTITUTION FUNCTION
 void matrixBackSubstitution(float* R, int rows, int cols, float* d, float* p){
 //solve Rp=d for an uppertriangular matrix R
 // using back substitution
@@ -78,6 +84,7 @@ p[j]= p[j] - R[j*cols + k]*p[k];
 p[j]=p[j]/R[j*cols+j];
 }
 }
+// MATRIX UPPER TRIANGULAR
 void matrixUpperTriangularInverse(float* A, int rows, int cols, float* invA){
 // This code computes the inverse of a non-singular upper triangular 3x3 matrix.
 if(rows !=3 || cols !=3){
@@ -97,6 +104,53 @@ invA[1*cols+2]=-A[1*cols+2]*invA[2*cols+2]/A[1*cols+1];
 invA[0*cols+2]=-( A[0*cols+1]*invA[1*cols+2] + A[0*cols+2]*invA[2*cols+2]
 )/A[0*cols+0];
 }
+void matrixQR(float* matrixA, int n, int m, float* q, float* r) {
+    // matrixA is of size n x m
+    // q is of size n x n (resulting orthogonal matrix Q)
+    // r is of size n x m (resulting upper triangular matrix R)
+    cout << "Testing QR Decomposition" << endl;
+    // Initialize q and r matrices
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            r[i * m + j] = matrixA[i * m + j];  // Copy A into R
+        }
+    }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            q[i * n + j] = 0.0f;  // Initialize Q with zeros
+        }
+    }
+
+    for (int i = 0; i < m; ++i) {
+        // First compute the norm of the current column of A (for orthogonalization)
+        float norm = 0.0f;
+        for (int j = 0; j < n; ++j) {
+            norm += r[j * m + i] * r[j * m + i];
+        }
+        norm = sqrtf(norm);
+
+        // Set the i-th column of Q
+        for (int j = 0; j < n; ++j) {
+            q[j * n + i] = r[j * m + i] / norm;
+        }
+
+        // Orthogonalize the rest of the columns of R
+        for (int j = i + 1; j < m; ++j) {
+            float dotProduct = 0.0f;
+            for (int k = 0; k < n; ++k) {
+                dotProduct += r[k * m + i] * r[k * m + j];
+            }
+
+            // Subtract the projection of the i-th column of R from the j-th column of R
+            for (int k = 0; k < n; ++k) {
+                r[k * m + j] -= dotProduct * q[k * n + i];
+            }
+        }
+    }
+
+    // Now, the R matrix is upper triangular, and Q is orthogonal.
+}
 void matrixInternalCameraParameters(float* p,int rows,int cols,float* k){
 float pSub[9];
 float r[9];
@@ -110,16 +164,15 @@ for (int col=0; col<cols-1;col++){
 pSub[row*(cols-1)+col]=p[row*cols+col];
 }
 }
+
 printf("3x3 submatrix of p\n");
 matrixPrint(pSub,3,3);
 // find the inverse of pSub with QR decomposition
 // Its inverse is B=RInv*QTranspose
-//matrixQR(pSub,3,3,q,r);
+matrixQR(pSub,3,3,q,r);
 matrixTranspose(q,3,3,qT);
 matrixUpperTriangularInverse(r,3,3,rInv);
 matrixProduct(rInv,3,3,qT,3,3,b);
-//QR decompose the matrix B
-//matrixQR(b,3,3,q,r);
 int rows_k = rows;
 int cols_k = rows_k;
 int rows_r = rows;

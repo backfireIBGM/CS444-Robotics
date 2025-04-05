@@ -14,9 +14,10 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
+
 int fps = 10; // in frames per sec
-int frameDelay = 1000/fps; // in millisec 
-double maxDistance = 3000.0; // mm
+int frameDelay = 1000/(2*fps); // in millisec 
+double maxDistance = 5000.0; // mm
 int rows  = 480;
 int cols  = 640;
 Mat depthImage = Mat::zeros(rows,cols, CV_8UC1);
@@ -37,10 +38,10 @@ if( map2y.empty()) cout << "Empty 2y lookup table"<<endl;
 
 // GStreamer pipeline for Jetson Nano with IMX219-83 cameras
  string left_cam_pipeline  = "nvarguscamerasrc sensor-id=0 ! video/x-raw(memory:NVMM), width=640, height=480, framerate="+to_string(fps)+
-                              "/1 ! nvvidconv flip-method=2 ! video/x-raw, format=GRAY8 !  appsink drop=1";
+                              "/1 ! nvvidconv flip-method=rotate-180 ! video/x-raw, format=GRAY8 !  appsink drop=1";
 
  string right_cam_pipeline = "nvarguscamerasrc sensor-id=1 ! video/x-raw(memory:NVMM), width=640, height=480, framerate="+to_string(fps)+
-                              "/1 ! nvvidconv flip-method=2 ! video/x-raw, format=GRAY8 !  appsink drop =1";
+                              "/1 ! nvvidconv flip-method=rotate-180 ! video/x-raw, format=GRAY8 !  appsink drop =1";
     
 // Open both cameras
     VideoCapture capL(left_cam_pipeline, CAP_GSTREAMER);
@@ -83,9 +84,12 @@ if( map2y.empty()) cout << "Empty 2y lookup table"<<endl;
       // Compute depth image using GPU
       stereoDepth(&rectifiedLeft, &rectifiedRight, &depthImage, maxDistance, rows, cols);
 
+     // Smooth the depth image
+     Mat medianFiltered;
+     medianBlur(depthImage, medianFiltered, 3);
 
-      // dispaly depth map
-      imshow("Depth",depthImage);
+      // display depth map
+      imshow("Depth",medianFiltered);
       hconcat(rectifiedLeft, rectifiedRight,both);
       imshow("Left and Right",both);
   

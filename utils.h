@@ -8,6 +8,5 @@ double vectorDotProduct(float* array1, float* array2, int n);
 void vectorScaling(float* array1, int n, float scalar);
 void vectorSubtract(float* array1, int n, float* array2, float* array3);
 double vectorNorm(float* array1, int n);
-// float vectorScale(float[], int size);
 
 #endif

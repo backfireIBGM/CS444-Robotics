@@ -57,27 +57,3 @@ void vectorPrint(float* u , int rows){
       }
       return sqrt(leng);
   }
-
-//   float* vectorNormalize(float u[], int size) {
-//     // Calculate the magnitude (square root of sum of squares)
-//     float sum = 0.0f;
-//     for (int i = 0; i < size; i++) {
-//         sum += u[i] * u[i];  // Square each component
-//     }
-    
-//     float magnitude = sqrt(sum);
-    
-//     // Create a new array for the unit vector
-//     float* unitVector = (float*) malloc(size * sizeof(float));
-    
-//     // Divide each component by the magnitude
-//     for (int i = 0; i < size; i++) {
-//         unitVector[i] = u[i] / magnitude;
-//     }
-    
-//     return unitVector;
-// }
-
-//   void martruxQR(double* a, int rows, int cols, double* q, double* r) {
-
-//   }

@@ -2,29 +2,36 @@
 CC = g++ 
 
 # Compiler flags
-CFLAGS = -Wall 
+CFLAGS = -Wall -I/usr/include/opencv4
+#Load Lib Path
+LDLIBPATH = -I/usr/include/opencv4 
+
+#Load Libraries
+LDLIBS = -I/usr/include/opencv4 -ljpeg -lm -lopencv_core -lopencv_imgproc -lopencv_calib3d -lopencv_highgui -lopencv_imgcodecs -lopencv_calib3d -lopencv_features2d -llapacke -llapack -lblas
 
 # Source files
-SRCS = calib.cc readParams.cc readData.cc
+SRCS =  pRectify.cc
+
 
 # Object files (replace .cc with .o)
 OBJS = $(SRCS:.cc=.o)
 
 # Output executable
-TARGET = calibTest
+TARGET =  pRectify
 
-# Rule to build the final executable
+#Rule to build the final executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDLIBS)
 
 # Rule to build object files
 %.o: %.cc
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean rule for Windows
+# Clean rule
 clean:
-	del /Q $(OBJS) $(TARGET).exe 2>nul
+	rm -f $(OBJS) $(TARGET)
 
 # Run the program
 run: $(TARGET)
 	./$(TARGET)
+

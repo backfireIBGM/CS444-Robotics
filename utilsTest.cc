@@ -22,13 +22,12 @@ float v[] = {
 };
 int rows = 3;
 float alpha = 2.0;
-// vectorPrint(u, rows);
-// vectorScale(u,rows,alpha,v);
-// vectorPrint(v,rows);
-
-float scale = vectorNorm(u, rows);
 vectorPrint(u, rows);
+vectorScale(u,rows,alpha,v);
+vectorPrint(v,rows);
+cout << "Hello" << endl;
 
-cout << "The scale is: " << scale << endl;
+
+// vectorDotProduct(u, v, rows);
 
 }
